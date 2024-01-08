@@ -1,93 +1,148 @@
 module.exports = {
-    contractAddress: '0xd2a5bC10698FD955D1Fe6cb468a17809A08fd005',
-    abi: [
+    contractAddress: '0xd9145CCE52D386f254917e481eB44e9943F39138',
+    abi:[
         {
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "_user",
+                    "name": "_walletAddress",
                     "type": "address"
-                }
-            ],
-            "name": "approveInsuranceRequest",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
+                },
                 {
-                    "internalType": "address",
-                    "name": "_user",
-                    "type": "address"
+                    "internalType": "string",
+                    "name": "_firstName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_lastName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_email",
+                    "type": "string"
                 }
             ],
-            "name": "rejectInsuranceRequest",
+            "name": "registerUser",
             "outputs": [],
-            "stateMutability": "nonpayable",
+            "stateMutability": "payable",
             "type": "function"
         },
         {
             "inputs": [
                 {
                     "internalType": "string",
-                    "name": "_date",
+                    "name": "_data",
                     "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_coveragePeriod",
-                    "type": "uint256"
                 },
                 {
                     "internalType": "address",
                     "name": "_user",
                     "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_cost",
-                    "type": "uint256"
                 }
             ],
-            "name": "submitInsuranceRequest",
+            "name": "setData",
             "outputs": [],
-            "stateMutability": "nonpayable",
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes",
+                    "name": "_hash",
+                    "type": "bytes"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
+            "name": "setHast",
+            "outputs": [],
+            "stateMutability": "payable",
             "type": "function"
         },
         {
             "inputs": [],
-            "name": "getAllInsuranceRequests",
-            "outputs": [
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
                 {
                     "components": [
                         {
                             "internalType": "string",
-                            "name": "date",
+                            "name": "firstName",
                             "type": "string"
                         },
                         {
-                            "internalType": "uint256",
-                            "name": "coveragePeriod",
-                            "type": "uint256"
+                            "internalType": "string",
+                            "name": "lastName",
+                            "type": "string"
                         },
                         {
-                            "internalType": "address",
-                            "name": "user",
-                            "type": "address"
-                        },
-                        {
-                            "internalType": "enum InsuranceRequestContract.RequestStatus",
-                            "name": "status",
-                            "type": "uint8"
-                        },
-                        {
-                            "internalType": "uint256",
-                            "name": "cost",
-                            "type": "uint256"
+                            "internalType": "string",
+                            "name": "email",
+                            "type": "string"
                         }
                     ],
-                    "internalType": "struct InsuranceRequestContract.InsuranceRequest[]",
+                    "indexed": false,
+                    "internalType": "struct insurance.User",
+                    "name": "user",
+                    "type": "tuple"
+                }
+            ],
+            "name": "testValue",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes",
+                    "name": "_hash",
+                    "type": "bytes"
+                }
+            ],
+            "name": "getAddressByHash",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
+            "name": "getDataByAddress",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "uint256",
+                            "name": "date",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "data",
+                            "type": "string"
+                        }
+                    ],
+                    "internalType": "struct insurance.Data[]",
                     "name": "",
                     "type": "tuple[]"
                 }
@@ -99,36 +154,33 @@ module.exports = {
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "",
+                    "name": "_walletAddress",
                     "type": "address"
                 }
             ],
-            "name": "insuranceRequests",
+            "name": "getUserByAddress",
             "outputs": [
                 {
-                    "internalType": "string",
-                    "name": "date",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "coveragePeriod",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "user",
-                    "type": "address"
-                },
-                {
-                    "internalType": "enum InsuranceRequestContract.RequestStatus",
-                    "name": "status",
-                    "type": "uint8"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "cost",
-                    "type": "uint256"
+                    "components": [
+                        {
+                            "internalType": "string",
+                            "name": "firstName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "lastName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "email",
+                            "type": "string"
+                        }
+                    ],
+                    "internalType": "struct insurance.User",
+                    "name": "",
+                    "type": "tuple"
                 }
             ],
             "stateMutability": "view",
@@ -137,17 +189,107 @@ module.exports = {
         {
             "inputs": [
                 {
-                    "internalType": "uint256",
+                    "internalType": "bytes",
                     "name": "",
-                    "type": "uint256"
+                    "type": "bytes"
                 }
             ],
-            "name": "users",
+            "name": "hashToUserMap",
             "outputs": [
                 {
                     "internalType": "address",
                     "name": "",
                     "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_walletAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "isRegistered",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "users",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "firstName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "lastName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "email",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "usersData",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "date",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "data",
+                    "type": "string"
                 }
             ],
             "stateMutability": "view",

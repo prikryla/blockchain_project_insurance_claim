@@ -5,7 +5,7 @@ function Form(props) {
     date: new Date().toISOString().split('T')[0],
     coveragePeriod: '',
     user: props.currentUser,
-    status: '',
+    status: 'Pending',
     cost: '',
   });
 
@@ -18,7 +18,7 @@ function Form(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData)
-    props.submit(formData.date, formData.coveragePeriod, formData.user, formData.cost)
+    props.submit(formData.date, formData.coveragePeriod, formData.user[0], formData.cost)
   };
 
   return (
