@@ -1,5 +1,5 @@
 module.exports = {
-    contractAddress: '0xd9145CCE52D386f254917e481eB44e9943F39138',
+    contractAddress: '0xDA0bab807633f07f013f94DD0E6A4F96F8742B53',
     abi:[
         {
             "inputs": [

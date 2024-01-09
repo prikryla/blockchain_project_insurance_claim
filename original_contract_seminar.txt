@@ -1,0 +1,61 @@
+// SPDX-License-Identifier: MIT
+
+pragma experimental ABIEncoderV2;
+pragma solidity ^0.8.*;
+
+contract insurance {
+
+    event testValue(User user);
+
+    struct User {
+        string firstName;
+        string lastName;
+        string email;
+    }
+
+    struct Data {
+        uint date;
+        string data;
+    }
+
+    mapping(address => User) public users;
+    mapping(bytes => address) public hashToUserMap;
+    mapping(address => Data[]) public usersData;
+    address public owner;
+
+
+    constructor () {
+        owner = msg.sender;
+    }
+
+    function registerUser (address _walletAddress, string memory _firstName, string memory _lastName, string memory _email) payable public {
+        users[_walletAddress] = User(_firstName, _lastName, _email);
+    }
+
+    function isRegistered(address _walletAddress) public view returns (bool) {
+        if (keccak256(abi.encodePacked(users[_walletAddress].firstName)) == keccak256(abi.encodePacked('')))
+            return false;
+        else 
+            return true;
+    }
+
+    function setData(string memory _data, address _user) payable public {
+        usersData[_user].push(Data(block.timestamp, _data));
+    } 
+
+    function getDataByAddress(address _user) public view returns (Data[] memory) {
+        return usersData[_user];
+    }
+
+    function setHast(bytes memory _hash, address _user) payable public {
+        hashToUserMap[_hash] = _user;
+    }
+
+    function getAddressByHash(bytes memory _hash) view public returns (address) {
+        return hashToUserMap[_hash];
+    }
+
+    function getUserByAddress(address _walletAddress) view public returns (User memory) {
+        return users[_walletAddress];
+    }
+}
